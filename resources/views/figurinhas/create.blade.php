@@ -10,10 +10,6 @@
         <input type="text" name="desc">
         <input type="file" name="imgOff">
         <input type="file" name="imgOn">
-        <select name="imgAtiva">
-            <option value="n">nao</option>
-            <option value="s">sim</option>
-        </select>
         <button type="submit">criar</button>
     </form>
 

@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\QuizzController;
+
 use App\Http\Controllers\FigurinhaController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +22,5 @@ Route::get('/', function () {
 });
 
 Route::resource('figurinhas', FigurinhaController::class); 
+
+Route::resource('quizzes', QuizzController::class);

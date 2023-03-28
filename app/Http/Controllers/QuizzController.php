@@ -3,19 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Figurinha;
+use App\Models\Quizz;
 
-class FigurinhaController extends Controller
+class QuizzController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        if(request('finalizar')) {
-            $request->session()->pull('Figurinha_id', null);
-        }
-        return view('figurinhas.index', ['figurinhas'=>Figurinha::all()]);
+        //
     }
 
     /**
@@ -23,20 +20,18 @@ class FigurinhaController extends Controller
      */
     public function create()
     {
-        return view('figurinhas.create');
+        return view('quizzes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Figurinha $figurinha)
+    public function store(Request $request, Quizz $quizz)
     {
-        $figurinha->fill($request->all());
-        //chama-se o obj figurinha. Preenche o obj com a variavel de request com os parametros da outra pagina (Models E Figurinha)
-        $figurinha->imgOff=figurinha::uploadImagem($request, 'imgOff');
-        $figurinha->imgOn=figurinha::uploadImagem($request, 'imgOn');
-        $figurinha->save();
-        $request->session()->put('Figurinha_id', $figurinha->id);
+        $quizz->fill($request->all());
+        $quizz->figurinha_id= $request->session()->get('Figurinha_id');
+        $quizz->save();
+
         return redirect()->route('quizzes.create');
     }
 
