@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('nome', 65);
             $table->text('desc');
             $table->enum('imgAtiva',['s',"n"])->default("n");
-            $table->binary('imgOff');
             $table->binary('imgOn');
         });
     }

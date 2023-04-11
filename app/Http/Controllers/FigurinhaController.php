@@ -33,8 +33,7 @@ class FigurinhaController extends Controller
     {
         $figurinha->fill($request->all());
         //chama-se o obj figurinha. Preenche o obj com a variavel de request com os parametros da outra pagina (Models E Figurinha)
-        $figurinha->imgOff=figurinha::uploadImagem($request, 'imgOff');
-        $figurinha->imgOn=figurinha::uploadImagem($request, 'imgOn');
+        $figurinha->imgOn=figurinha::uploadImagem($request);
         $figurinha->save();
         $request->session()->put('Figurinha_id', $figurinha->id);
         return redirect()->route('quizzes.create');

@@ -8,7 +8,6 @@
         @csrf
         <input type="text" name="nome">
         <input type="text" name="desc">
-        <input type="file" name="imgOff">
         <input type="file" name="imgOn">
         <button type="submit">criar</button>
     </form>

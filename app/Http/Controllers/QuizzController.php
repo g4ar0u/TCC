@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Quizz;
+use App\Models\Figurinha;
 
 class QuizzController extends Controller
 {
@@ -40,7 +41,9 @@ class QuizzController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $figurinha = Figurinha::findOrFail($id);
+        $quizzes = Quizz::where(["figurinha_id"=>$id])->get();
+        return view('quizzes.show', compact('figurinha','quizzes'));
     }
 
     /**
