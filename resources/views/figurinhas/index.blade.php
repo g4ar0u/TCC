@@ -14,7 +14,7 @@
         <div class="card-body">
           <h5 class="card-title">{{$figurinha->nome}}</h5>
           <p class="card-text">{{$figurinha->desc}}</p>
-          <a href="{{route('quizzes.show', $figurinha->id)}}" class="btn btn-primary">Go somewhere</a>
+          <a href="{{route('questoes.show', $figurinha->id)}}" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
     @endforeach

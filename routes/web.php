@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\QuizzController;
+use App\Http\Controllers\QuestaoController;
 
 use App\Http\Controllers\FigurinhaController;
 
@@ -18,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('figurinhas.index',['figurinhas' => App\Models\Figurinha::all()] );
 });
 
 Route::resource('figurinhas', FigurinhaController::class); 
 
-Route::resource('quizzes', QuizzController::class);
+Route::resource('questoes', QuestaoController::class);
+
+Route::post('/questoes/validate', [QuestaoController::class,'validateQuizz'])->name('questoes.validate');

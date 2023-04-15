@@ -36,7 +36,7 @@ class FigurinhaController extends Controller
         $figurinha->imgOn=figurinha::uploadImagem($request);
         $figurinha->save();
         $request->session()->put('Figurinha_id', $figurinha->id);
-        return redirect()->route('quizzes.create');
+        return redirect()->route('questoes.create');
     }
 
     /**
