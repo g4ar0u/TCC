@@ -9,19 +9,15 @@ use App\Models\Resposta;
 
 class QuestaoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        if (request("addQuestao")) {
+            $request->session()->put('Figurinha_id', request("addQuestao"));
+        }
         return view('questoes.create');
     }
 
@@ -71,7 +67,9 @@ class QuestaoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $questao = Questao::findOrFail($id);
+        $respostas = Resposta::where(['questao_id' => $questao->id])->get();
+        return view('questoes.edit',compact('questao','respostas'));
     }
 
     /**
@@ -79,7 +77,23 @@ class QuestaoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $respostas = Resposta::where(['questao_id' => $id])->get();
+       
+        foreach ($respostas as $key => $value) {
+            
+            $novaResposta = [
+                'questao_id' => $value->questao_id,
+                'figurinha_id' => $value->figurinha_id,
+                'correta' => $value->correta,
+                'texto' => $request->resposta[$key]
+            ];
+            
+            Resposta::findOrFail($value->id)->update($novaResposta);    
+        }
+
+        return redirect()->route('figurinhas.index');
+
     }
 
     /**
@@ -87,7 +101,9 @@ class QuestaoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Resposta::where(['questao_id' => $id])->delete();
+        Questao::findOrFail($id)->delete();
+        return redirect()->route('figurinhas.index');
     }
 
     public function validateQuizz(Request $request)
@@ -95,5 +111,12 @@ class QuestaoController extends Controller
         $id = $request->figurinha_id;
         Figurinha::findOrFail($id)->update(['imgAtiva' => 's']);
         return redirect()->route('figurinhas.index');
+    }
+
+    public function dashboard(string $id)
+    {
+        $questoes = Questao::where(['figurinha_id' => $id])->get();
+        $figurinha = Figurinha::findOrFail($id);
+        return view('questoes.dashboard',compact('questoes','figurinha'));
     }
 }

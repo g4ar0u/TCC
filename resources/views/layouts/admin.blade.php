@@ -24,6 +24,7 @@
                             {{ Auth::user()->name }}
                     </a>
 
+                    
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             @if (Auth::user()->admin)
                             <a class="dropdown-item" href="{{ route('dashboard.figurinhas') }}">Dashboard</a>
@@ -37,6 +38,7 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
+
                         </div>
                     </li>
                 @endauth
@@ -57,12 +59,12 @@
                 @endguest
             </ul>
         </nav>
-        <div><h1>@yield('subtitle')</h1></div>
+        <div class="adm"><h1>@yield('subtitle')</h1></div>
     </header>
 
     <div class="container pt-4 pb-4">
         @yield('content')
     </div>
-    <footer class="d-flex justify-content-center p-5">Copyright &copy;2023</footer>
+    <footer class="d-flex justify-content-center p-5 adm">Copyright &copy;2023</footer>
 </body>
 </html>

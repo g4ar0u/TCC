@@ -4,6 +4,8 @@ use App\Http\Controllers\QuestaoController;
 
 use App\Http\Controllers\FigurinhaController;
 
+use App\Http\Controllers\HomeController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,11 +20,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('figurinhas.index',['figurinhas' => App\Models\Figurinha::all()] );
-});
+    return view('auth.login');
+})->middleware('guest');
 
-Route::resource('figurinhas', FigurinhaController::class); 
+Route::resource('figurinhas', FigurinhaController::class)->only([
+    'create','store','edit','update','destroy'
+])->middleware('admin');
 
-Route::resource('questoes', QuestaoController::class);
+Route::resource('figurinhas', FigurinhaController::class)->only([
+    'index', 'show'
+])->middleware('auth');
 
-Route::post('/questoes/validate', [QuestaoController::class,'validateQuizz'])->name('questoes.validate');
+Route::resource('questoes', QuestaoController::class)->only([
+    'create','store','edit','update','destroy'
+])->middleware('admin');
+
+Route::resource('questoes', QuestaoController::class)->only([
+    'index', 'show'
+])->middleware('auth');
+
+Route::post('/questoes/validate', [QuestaoController::class,'validateQuizz'])->name('questoes.validate')->middleware('admin');
+
+Route::get('/dashboard/figurinhas', [FigurinhaController::class,'dashboard'])->name('dashboard.figurinhas')->middleware('admin');
+
+Route::get('/dashboard/questoes/{id}', [QuestaoController::class,'dashboard'])->name('dashboard.questoes')->middleware('admin');
+
+Route::get('/personagens', [FigurinhaController::class,'personagens'])->name('personagens')->middleware('auth');
+
+Route::get('/home', [HomeController::class,'index'])->name('home')->middleware('auth');
+
+Auth::routes();

@@ -2,10 +2,13 @@
 
 @section('title', "Home")
 
+@section('subtitle','Álbum de figurinhas')
+
 @section('content')
-    <h1>Home</h1>
+    <h3 class="text-center pb-4 pt-3 w-100 text-uppercase">Clique em uma figurinha para saber mais!</h3>
+    <div class="d-flex flex-wrap justify-content-evenly m-auto">
     @foreach ($figurinhas as $figurinha)
-    <div class="card" style="width: 18rem;">
+    <div class="card personagem">
         @if ($figurinha->imgAtiva=="n")
         <p>vish tem nada</p>
        @else
@@ -14,9 +17,14 @@
         <div class="card-body">
           <h5 class="card-title">{{$figurinha->nome}}</h5>
           <p class="card-text">{{$figurinha->desc}}</p>
-          <a href="{{route('questoes.show', $figurinha->id)}}" class="btn btn-primary">Go somewhere</a>
+          @if ($figurinha->imgAtiva=="n")
+          <a href="{{route('questoes.show', $figurinha->id)}}" class="btn btn-primary">Quizz</a>
+          @else
+          
+          @endif
         </div>
       </div>
     @endforeach
+    </div>
 @endsection
 

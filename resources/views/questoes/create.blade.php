@@ -1,24 +1,29 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
-@section('title', "Criar")
+@section('title', "Criar Questões")
+
+@section('subtitle', "CRIE SUA QUESTÃO")
 
 @section('content')
     <form method="post" action="{{route('questoes.store')}}" class="d-flex flex-column w-50 m-auto">
-        <h1 class="text-center w-100">Criar questão</h1>
         @csrf
-        <label for="">Texto:</label>
-        <input type="text" name="texto">
-        <label for="">Resposta:</label>
-        <input type="text" name="resposta[]">
-        <label for="">Resposta:</label>
-        <input type="text" name="resposta[]">
-        <label for="">Resposta:</label>
-        <input type="text" name="resposta[]">
-        <label for="">Resposta certa:</label>
-        <input type="text" name="respostaCerta">
+        <label class="form-label fs-5 mt-3">Texto:</label>
+        <input class="form-control form-control-lg" type="text" name="texto">
 
-        <a href="{{route('figurinhas.index',['finalizar'=>true])}}">Finalizar</a>
+        <label class="form-label fs-5 mt-3">Resposta:</label>
+        <input class="form-control form-control-lg" type="text" name="resposta[]">
 
-        <button type="submit">Criar</button>
+        <label class="form-label fs-5 mt-3">Resposta:</label>
+        <input class="form-control form-control-lg" type="text" name="resposta[]">
+
+        <label class="form-label fs-5 mt-3">Resposta:</label>
+        <input class="form-control form-control-lg" type="text" name="resposta[]">
+
+        <label class="form-label fs-5 mt-3">Resposta certa:</label>
+        <input class="form-control form-control-lg" type="text" name="respostaCerta">
+
+        <a href="{{route('figurinhas.index')}}">Finalizar</a>
+
+        <button type="submit" class="btn btn-success btn-lg mt-3 adm">Criar</button>
     </form>
 @endsection

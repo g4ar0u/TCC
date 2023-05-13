@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Figurinha;
+use App\Models\Questao;
+use App\Models\Resposta;
 
 class FigurinhaController extends Controller
 {
@@ -12,9 +14,12 @@ class FigurinhaController extends Controller
      */
     public function index(Request $request)
     {
-        if(request('finalizar')) {
+        
+        // excluindo valores da sessao de armazenamento do id da figurinha
+        if ($request->session()->has('Figurinha_id')) {
             $request->session()->pull('Figurinha_id', null);
         }
+
         return view('figurinhas.index', ['figurinhas'=>Figurinha::all()]);
     }
 
@@ -40,19 +45,11 @@ class FigurinhaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        return view('figurinhas.edit',['figurinha' => Figurinha::findOrFail($id)]);
     }
 
     /**
@@ -60,7 +57,14 @@ class FigurinhaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $novaFigurinha = [
+            "nome" => $request->nome,
+            "desc" => $request->desc,
+            "imgOn" => figurinha::uploadImagem($request)
+        ];
+
+        Figurinha::findOrFail($id)->update($novaFigurinha);
+        return redirect()->route('figurinhas.index');
     }
 
     /**
@@ -68,6 +72,19 @@ class FigurinhaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Resposta::where(['figurinha_id' => $id])->delete();
+        Questao::where(['figurinha_id' => $id])->delete();
+        Figurinha::findOrFail($id)->delete();
+        return redirect()->route('figurinhas.index');
+    }
+
+    public function dashboard()
+    {
+        return view("figurinhas.dashboard",['figurinhas' => Figurinha::all()]);
+    }
+
+    public function personagens()
+    {
+        return view("figurinhas.personagens",['figurinhas' => Figurinha::all()]);
     }
 }
