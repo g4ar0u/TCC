@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="imgs/chibinho.png">
     <title>@yield('title')</title>
 </head>
 <body>
@@ -57,6 +58,7 @@
                 @endguest
             </ul>
         </nav>
+        <img src="/imgs/background.png" alt="EcoQuizzo">
         <div><h1>@yield('subtitle')</h1></div>
     </header>
 

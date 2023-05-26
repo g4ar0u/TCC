@@ -11,10 +11,16 @@
 header div{
     background-color: #c7d472fc;
 }
+header img{
+    width: 100%;
+    max-height: 53vh;
+    object-fit: fill;
+}
 header div h1{
+    color: #fff;
     padding: 20px 0;
     font-size: 35px;
-    color: #fff;
+    
 }
 footer{
     font-size: 20px;
@@ -42,6 +48,16 @@ h2{
     object-fit: contain;
     height: 300px;
     width: 300px;
+    
+}
+.figurinha{
+    width: 22vw;
+    object-fit: contain;
+    
+}
+.figurinha img{
+    height: 27vw;
+    
 }
 .dashboard img{
     object-fit: cover;
@@ -50,6 +66,7 @@ h2{
 }
 .adm{
     background-color: #f5a988 !important;
+    border-color:#f5a988 ;
 }
 
 section img{
@@ -64,4 +81,23 @@ section img{
 .alternativas{
     border-color: #A7D1EF !important;
     background-color: #A7D1EF !important;
+}
+
+.azul{
+    background: #9BB1EA;
+    border-color: #9BB1EA;
+}
+
+.home img{
+    margin: 0 10px;
+    width: 22vw;
+}
+.sobre img{
+    width: 25vw;
+    min-width: 300px;
+}
+.sobre p {
+    text-align: justify !important;
+    width: 75%;
+    line-height: 30px;
 }
