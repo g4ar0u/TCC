@@ -10,9 +10,9 @@
 <div class="d-flex flex-column">
 
 <div class="d-flex flex-wrap justify-content-center home">
-    <img src="/imgs/3.png" alt="">
-    <img src="/imgs/4.png" alt="">
-    <img src="/imgs/5.png" alt="">
+    <img src="/imgs/3.png" alt="EcoQuizzo">
+    <img src="/imgs/4.png" alt="EcoQuizzo">
+    <img src="/imgs/5.png" alt="EcoQuizzo">
 </div>
 
 <div class="d-flex align-items-center justify-content-center sobre mt-5">

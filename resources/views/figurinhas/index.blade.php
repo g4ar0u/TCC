@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', "Home")
+@section('title', "Álbum")
 
 @section('subtitle','Álbum de figurinhas')
 
@@ -10,7 +10,7 @@
     @foreach ($figurinhas as $figurinha)
     <div class="card figurinha mt-4">
         @if ($figurinha->imgAtiva=="n")
-        <p>vish tem nada</p>
+        <img src ="\imgs\figurinhas.png" alt="Clique no botão quizz">
        @else
         <img src="\imgs\uploads\{{$figurinha->imgOn}}" class="card-img-top" alt="{{$figurinha->nome}}">
        @endif
