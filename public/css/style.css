@@ -78,6 +78,9 @@ section img{
     width: 300px;
     margin: 10px 0;
 }
+.questoes h1{
+    max-width: 400px;
+}
 .alternativas{
     border-color: #A7D1EF !important;
     background-color: #A7D1EF !important;

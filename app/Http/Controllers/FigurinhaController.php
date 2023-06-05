@@ -63,6 +63,10 @@ class FigurinhaController extends Controller
             "imgOn" => figurinha::uploadImagem($request)
         ];
 
+        if (!isset($request->imgOn)){
+            $novaFigurinha['imgOn'] = Figurinha::findOrFail($id)->imgOn;
+        }
+
         Figurinha::findOrFail($id)->update($novaFigurinha);
         return redirect()->route('figurinhas.index');
     }

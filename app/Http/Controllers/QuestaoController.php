@@ -58,7 +58,8 @@ class QuestaoController extends Controller
     {
         $figurinha = Figurinha::findOrFail($id);
         $questoes = Questao::where(["figurinha_id"=>$id])->get();
-        $respostas = Resposta::where(['figurinha_id'=>$id])->get();
+        $respostas = Resposta::where(['figurinha_id'=>$id])->inRandomOrder()->get();
+        
         return view('questoes.show', compact('figurinha','questoes','respostas'));
     }
 

@@ -4,10 +4,12 @@ const bntRestart = document.querySelector('.finish button');
 
 let currentIndex = 0;
 let questionsCorrect = 0;
+let questionsIncorrect = 0;
 
 bntRestart.onclick = () => {
     currentIndex = 0;
     questionsCorrect = 0;
+    questionsIncorrect = 0;
     document.querySelector('.finish span').innerHTML = "";
 
     questoes.forEach((questao) => {
@@ -24,6 +26,11 @@ alternativas.forEach((alternativa) => {
         if(alternativa.getAttribute("data-correct") == 1) {
             questionsCorrect++;
         }
+        else{
+            if (currentIndex == questoes.length - 1) {
+                questionsIncorrect++
+            }
+        }
     
         if(currentIndex < questoes.length - 1) {
             currentIndex++;
@@ -31,10 +38,15 @@ alternativas.forEach((alternativa) => {
             questoes[currentIndex].classList.remove('d-none');
                 
         }else{
-            document.querySelector('.finish span').innerHTML = `Você acertou ${questionsCorrect} de ${questoes.length}`;
-            if(questoes.length == questionsCorrect) {
-                document.getElementById('quizzForm').submit();
+            if (questionsIncorrect == 0) {
+                document.querySelector('.finish span').innerHTML = `Você acertou ${questionsCorrect} de ${questoes.length}`;
+                if(questoes.length == questionsCorrect) {
+                    document.getElementById('quizzForm').submit();
+                }
+            }else{
+                alert("Reinicie o Quizz para tentar novamente!");
             }
+
         }
             
     });
