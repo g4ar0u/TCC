@@ -19,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware('guest');
+Route::get('/', [HomeController::class,'index'])->name('home');
 
 Route::resource('figurinhas', FigurinhaController::class)->only([
     'create','store','edit','update','destroy'
@@ -46,7 +44,5 @@ Route::get('/dashboard/figurinhas', [FigurinhaController::class,'dashboard'])->n
 Route::get('/dashboard/questoes/{id}', [QuestaoController::class,'dashboard'])->name('dashboard.questoes')->middleware('admin');
 
 Route::get('/personagens', [FigurinhaController::class,'personagens'])->name('personagens')->middleware('auth');
-
-Route::get('/home', [HomeController::class,'index'])->name('home')->middleware('auth');
 
 Auth::routes();
