@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/home', [HomeController::class,'index'])->name('home');
 
 Route::resource('figurinhas', FigurinhaController::class)->only([
     'create','store','edit','update','destroy'
